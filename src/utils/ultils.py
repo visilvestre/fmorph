@@ -29,8 +29,6 @@ parser.add_argument('--em_scale', default=0.1, help='Scaling factor for eye-mout
 parser.add_argument('--use_alpha', default=False, help='Add an alpha channel for masking', type=bool)
 args, other_args = parser.parse_known_args()
 
-landmarks_detector = LandmarksDetector()
-
 # Function to combine two GIFs side by side
 def combine_gifs(gif1_path, gif2_path, output_path='output.gif'): 
     """ Combines two GIFs side by side into a new GIF.
@@ -195,6 +193,8 @@ class LandmarksDetector:
             except:
                 print("Exception in get_landmarks()!")
 
+
+
 # Align faces in images
 def align_faces_in_images(RAW_IMAGES_DIR="data/images/", ALIGNED_IMAGES_DIR="data/aligned_images/", output_size=args.output_size, x_scale=args.x_scale, y_scale=args.y_scale, em_scale=args.em_scale, use_alpha=args.use_alpha):
     """ Extracts and aligns all faces from images using DLib and a function from original FFHQ dataset preparation step.
@@ -209,6 +209,9 @@ def align_faces_in_images(RAW_IMAGES_DIR="data/images/", ALIGNED_IMAGES_DIR="dat
     Returns:
         None
     """
+    # Initialize the landmarks detector
+    landmarks_detector = LandmarksDetector()
+    
     for img_name in os.listdir():
         print('Aligning %s ...' % img_name)
         try:
