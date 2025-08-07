@@ -1,2 +1,2 @@
 # fmorph
-This Repository aims to develop a basic face morphing algorithm
+This Repository aims to present a basic face morphing algorithm
